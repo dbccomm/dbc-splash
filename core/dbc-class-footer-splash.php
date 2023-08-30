@@ -40,7 +40,7 @@ class DBC_Footer_Splash {
      */
     final private function __construct() {
         add_action('wp_footer', [ $this, 'splash' ]);
-        add_action('init', [ $this, 'set_cookie' ]);
+//        add_action('init', [ $this, 'set_cookie' ]);
     }
 
     public function set_cookie() {
@@ -54,7 +54,7 @@ class DBC_Footer_Splash {
             return;
         }
 
-        setcookie( $splash_name, md5( time() ) , time() + ( 86400 * 30 ), '/' );
+        setcookie( $splash_name, 'true', time() + ( 86400 * 30 ), '/' );
 
     }
 
@@ -115,14 +115,10 @@ class DBC_Footer_Splash {
             return;
         }
 
-        if (isset($_COOKIE[$splash_name])) {
-            return;
-        }
-
     ?>
     <style>
       .dbc-splash-modal {
-        display: flex;
+        display: none;
         position: fixed;
         top: 0;
         left: 0;
@@ -217,9 +213,27 @@ class DBC_Footer_Splash {
        </div>
      </div>
 
-
      <script>
+
+      function getCookie( name ) {
+         let value = "; " + document.cookie;
+         let parts = value.split( "; " + name + "=" );
+         if ( parts.length === 2 ) return parts.pop().split(";").shift();
+       }
+
+       function setCookie(name, value, days) {
+         let expires = "";
+         if (days) {
+           let date = new Date();
+           date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+           expires = "; expires=" + date.toUTCString();
+         }
+         document.cookie = name + "=" + (value || "") + expires + "; path=/";
+      }
+
+
        document.addEventListener("DOMContentLoaded", function() {
+
          const modal = document.getElementById("newsletter_modal");
          const closeModalBtn = document.getElementById("newsletter_modal_close");
 
@@ -233,8 +247,15 @@ class DBC_Footer_Splash {
              modal.style.display = "none";
            }
          });
+
+         if (getCookie('<?php echo $splash_name; ?>') !== 'true') {
+           document.querySelector('.dbc-splash-modal').style.display = 'flex';
+           setCookie('<?php echo $splash_name; ?>', 'true', 3650);
+         }
+
        });
      </script>
+
 
 
 

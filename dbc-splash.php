@@ -3,7 +3,7 @@
  * Plugin Name: DBC Splash Screen
  * Plugin URI: https://lecourrier.qc.ca
  * Description: Show user a splash screen on page load then set a cookie so it is loaded only once.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Bruno Laferrière
  * Author URI: https://lecourrier.qc.ca
  * License: GPLv3
@@ -27,7 +27,7 @@ defined( 'ABSPATH' ) || exit;
  */
 const FILE         = __FILE__;
 const PREFIX       = 'dbcsplash';
-const VERSION      = '1.0.0';
+const VERSION      = '1.0.1';
 const TESTED       = '6.3';
 const REQUIRES     = '6.3';
 const REQUIRES_PHP = '8.0';
