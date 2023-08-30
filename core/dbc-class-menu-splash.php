@@ -217,9 +217,6 @@ class DBC_Menu_Splash {
                     </td>
                 </tr>
 
-
-                <!-- And so on for each of your fields -->
-                <!-- For example: Title, Text, Custom Button Label, Custom Button Link, Colors etc. -->
             </table>
 
             <?php submit_button(_x('Save Changes', 'button', 'dbcSplash')); ?>
